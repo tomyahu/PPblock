@@ -13,3 +13,7 @@ FPS = 60
 
 #Colores
 COLOR_White = (255,255,255)
+
+
+#Velocidad por default de la bolita
+default_Vel = 10
