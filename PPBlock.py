@@ -25,5 +25,9 @@ while True:
         if event.type == QUIT:
             exit()
 
+    # Dibuja los Margenes
+    pygame.draw.line(surface, COLOR_White, [0, marUp],[winWidth, marUp], 2)
+    pygame.draw.line(surface, COLOR_White, [0, marDown], [winWidth, marDown], 2)
+
     # Vuelca lo dibujado en pantalla
     pygame.display.flip()

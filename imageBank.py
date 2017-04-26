@@ -1,0 +1,1 @@
+#pygame.image.load('res/background.gif')
