@@ -22,6 +22,7 @@ pygame.display.set_caption('PP-Block')
 # Se crea el reloj
 clock = pygame.time.Clock()
 
+########PRUEBA
 ba = Bola(100,80,pokebola,surface)
 ba.setVel(10,0)
 
@@ -43,6 +44,7 @@ while True:
     pygame.draw.line(surface, COLOR_White, [0, marUp],[winWidth, marUp], 2)
     pygame.draw.line(surface, COLOR_White, [0, marDown], [winWidth, marDown], 2)
 
+    ###########PRUEBA
     ba.updatePos()
     ba.draw()
 

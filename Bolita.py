@@ -1,8 +1,11 @@
 from math import *
 from consts import winWidth, marUp, marDown, default_Vel
 from math import *
-from soundBank import *
 
+#Sonidos
+from soundBank import *
+from pygame import mixer
+mixer.init()
 
 class Bola():
 
@@ -34,21 +37,21 @@ class Bola():
         if self.y < marUp:
             self.y = marUp
             self.vely *= -1
-            #blip()
+            blip.play()
         return
 
     def colisionLeft(self):
         if self.x < 0:
             self.x = 0
             self.velx *= -1
-            #blip()
+            blip.play()
         return
 
     def colisionRight(self):
         if self.x > winWidth:
             self.x = winWidth
             self.velx *= -1
-            #blip()
+            blip.play()
         return
 
     def colisionDown(self):
