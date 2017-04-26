@@ -1,4 +1,4 @@
-import pygame
+import pygame.mixer
 
 #Efectos de Sonido
-blip = pygame.mixer.Sound('sonidos/blip.wav') #blip
+#blip = pygame.mixer.Sound('sonidos/blip.wav')
