@@ -1,1 +1,2 @@
-#pygame.image.load('res/background.gif')
+#Sprites Bolas
+pokebola = pygame.image.load('images/Pokebola.png')

@@ -2,6 +2,8 @@ import os
 import pygame
 from pygame.locals import *
 from consts import *
+from imageBank import *
+from soundBank import *
 
 # Se inician modulos
 pygame.init()

@@ -1,6 +1,7 @@
 import pygame
 from math import *
 from consts import winWidth, winHeight, marDown, marUp, default_Vel
+from soundBank import *
 
 class Bola():
 
@@ -21,16 +22,27 @@ class Bola():
         if self.y < marUp:
             self.y = marUp
             self.vely *= -1
+            blip()
         return
 
     def colisionLeft(self):
         if self.x < 0:
             self.x = 0
             self.velx *= -1
+            blip()
         return
 
     def colisionRight(self):
         if self.x < winWidth:
             self.x = winWidth
             self.velx *= -1
+            blip()
         return
+
+    def updatePos(self):
+        self.x += self.velx
+        self.y += self.vely
+
+        self.colisionLeft()
+        self.colisionRight()
+        self.colisionUp()
