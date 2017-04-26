@@ -1,6 +1,6 @@
 import os
 import pygame
-
+from pygame.locals import *
 from consts import *
 
 # Se inician modulos
@@ -20,7 +20,7 @@ while True:
     # Setea el reloj
     clock.tick(FPS)
 
-    # Busca eventos de aplicación
+    # Busca eventos de aplicacion
     for event in pygame.event.get():
         if event.type == QUIT:
             exit()
