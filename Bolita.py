@@ -1,4 +1,3 @@
-from math import *
 from consts import winWidth, marUp, marDown, default_Vel
 from math import *
 from textura import *
@@ -13,8 +12,8 @@ class Bola():
     def __init__(self,x,y,texture,screen):
         self.x = x
         self.y = y
-        self.velx = 0
-        self.vely = 0
+        self.velx = 0.0
+        self.vely = 0.0
         self.tex = texture
         self.screen = screen
         return
@@ -62,3 +61,24 @@ class Bola():
 
         if self.y > marDown - ((self.tex.alto)>>1):
             self.colisionVer(marDown - ((self.tex.alto)>>1))
+
+    def getXin(self):
+        return self.x - (self.tex.ancho>>1)
+
+    def getYin(self):
+        return self.y - (self.tex.alto>>1)
+
+    def getXfin(self):
+        return self.x + (self.tex.ancho>>1)
+
+    def getYfin(self):
+        return self.y + (self.tex.alto>>1)
+
+    def isInArea(self,x1,x2,y1,y2):
+        xCenter = self.x
+        yCenter = self.y
+
+        if xCenter > x1 and xCenter < x2 and yCenter > y1 and yCenter < y2:
+            return True
+        else:
+            return False

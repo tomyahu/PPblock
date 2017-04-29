@@ -17,4 +17,4 @@ COLOR_Black = (0,0,0)
 
 
 #Velocidad por default de la bolita
-default_Vel = 10
+default_Vel = 10.0

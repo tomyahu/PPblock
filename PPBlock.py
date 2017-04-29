@@ -2,6 +2,7 @@ import os
 import pygame
 from pygame.locals import *
 from consts import *
+from math import *
 
 #Importar Imagenes y sonidos
 from imageBank import *
@@ -9,6 +10,7 @@ from soundBank import *
 
 #Importar Objetos
 from Bolita import Bola
+from Casilla import casilla
 
 
 # Se inician modulos
@@ -23,8 +25,10 @@ pygame.display.set_caption('PP-Block')
 clock = pygame.time.Clock()
 
 ########PRUEBA
-ba = Bola(100,100,pokebola,surface)
-ba.setVel(3,3)
+ba = Bola(300,200,pokebola,surface)
+ba.setVel(sqrt(10.0),sqrt(10.0))
+
+ca = casilla(200,200,caja1,100,surface)
 
 # Entra en bucle principal
 while True:
@@ -45,8 +49,16 @@ while True:
     pygame.draw.line(surface, COLOR_White, [0, marDown], [winWidth, marDown], 2)
 
     ###########PRUEBA
+    a = 0
     ba.updatePos()
+
+    if ba.isInArea(ca.getXin()-a,ca.getXfin()+a,ca.getYin()-a, ca.getYfin()+a):
+        ca.colisionBolita(ba)
+
+
+
     ba.draw()
+    ca.draw()
 
     # Vuelca lo dibujado en pantalla
     pygame.display.flip()
