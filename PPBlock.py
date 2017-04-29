@@ -23,8 +23,8 @@ pygame.display.set_caption('PP-Block')
 clock = pygame.time.Clock()
 
 ########PRUEBA
-ba = Bola(100,80,pokebola,surface)
-ba.setVel(10,0)
+ba = Bola(100,100,pokebola,surface)
+ba.setVel(3,3)
 
 # Entra en bucle principal
 while True:

@@ -1,6 +1,7 @@
 from math import *
 from consts import winWidth, marUp, marDown, default_Vel
 from math import *
+from textura import *
 
 #Sonidos
 from soundBank import *
@@ -19,7 +20,7 @@ class Bola():
         return
 
     def draw(self):
-        self.screen.blit(self.tex, (self.x, self.y))
+        self.screen.blit(self.tex.image, (self.x - (self.tex.ancho>>1), self.y - (self.tex.alto>>1)))
         return
 
     def setVel(self,vx,vy):
@@ -33,39 +34,31 @@ class Bola():
         self.vely = (altura / hipotenusa) * default_Vel
         return
 
-    def colisionUp(self):
-        if self.y < marUp:
-            self.y = marUp
-            self.vely *= -1
-            blip.play()
+    def colisionVer(self,borde):
+        self.y = borde
+        self.vely *= -1
+        blip.play()
         return
 
-    def colisionLeft(self):
-        if self.x < 0:
-            self.x = 0
-            self.velx *= -1
-            blip.play()
-        return
-
-    def colisionRight(self):
-        if self.x > winWidth:
-            self.x = winWidth
-            self.velx *= -1
-            blip.play()
-        return
-
-    def colisionDown(self):
-        if self.y > marDown:
-            self.y = marDown
-            self.vely = 0
-            self.velx = 0
+    def colisionHor(self,borde):
+        self.x = borde
+        self.velx *= -1
+        blip.play()
         return
 
     def updatePos(self):
         self.x += self.velx
         self.y += self.vely
 
-        self.colisionLeft()
-        self.colisionRight()
-        self.colisionUp()
-        self.colisionDown()
+
+        if self.x < (self.tex.ancho)>>1:
+            self.colisionHor((self.tex.ancho)>>1)
+
+        if self.x > winWidth - ((self.tex.ancho)>>1):
+            self.colisionHor(winWidth - ((self.tex.ancho)>>1))
+
+        if self.y < marUp + ((self.tex.alto)>>1):
+            self.colisionVer(marUp + ((self.tex.alto)>>1))
+
+        if self.y > marDown - ((self.tex.alto)>>1):
+            self.colisionVer(marDown - ((self.tex.alto)>>1))
