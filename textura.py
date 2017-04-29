@@ -1,4 +1,4 @@
-class textura():
+class Textura():
 
     def __init__(self,image,ancho,alto):
         self.image = image

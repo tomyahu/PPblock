@@ -1,3 +1,6 @@
+import pygame
+pygame.init()
+
 #Dimensiones ventana
 winHeight = 550
 winWidth = 315
@@ -18,3 +21,9 @@ COLOR_Black = (0,0,0)
 
 #Velocidad por default de la bolita
 default_Vel = 10.0
+
+#TamCasillas
+tamCas = 45.0
+
+#fuentes
+fuenteCaja = pygame.font.SysFont("Eras Demi ITC", 16)

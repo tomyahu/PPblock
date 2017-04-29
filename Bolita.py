@@ -19,7 +19,7 @@ class Bola():
         return
 
     def draw(self):
-        self.screen.blit(self.tex.image, (self.x - (self.tex.ancho>>1), self.y - (self.tex.alto>>1)))
+        self.screen.blit(self.tex.image, (self.x - (self.tex.ancho/2), self.y - (self.tex.alto/2)))
         return
 
     def setVel(self,vx,vy):
@@ -50,29 +50,29 @@ class Bola():
         self.y += self.vely
 
 
-        if self.x < (self.tex.ancho)>>1:
-            self.colisionHor((self.tex.ancho)>>1)
+        if self.x < (self.tex.ancho)/2:
+            self.colisionHor((self.tex.ancho)/2)
 
-        if self.x > winWidth - ((self.tex.ancho)>>1):
-            self.colisionHor(winWidth - ((self.tex.ancho)>>1))
+        if self.x > winWidth - ((self.tex.ancho)/2):
+            self.colisionHor(winWidth - ((self.tex.ancho)/2))
 
-        if self.y < marUp + ((self.tex.alto)>>1):
-            self.colisionVer(marUp + ((self.tex.alto)>>1))
+        if self.y < marUp + ((self.tex.alto)/2):
+            self.colisionVer(marUp + ((self.tex.alto)/2))
 
-        if self.y > marDown - ((self.tex.alto)>>1):
-            self.colisionVer(marDown - ((self.tex.alto)>>1))
+        if self.y > marDown - ((self.tex.alto)/2):
+            self.colisionVer(marDown - ((self.tex.alto)/2))
 
     def getXin(self):
-        return self.x - (self.tex.ancho>>1)
+        return self.x - (self.tex.ancho/2)
 
     def getYin(self):
-        return self.y - (self.tex.alto>>1)
+        return self.y - (self.tex.alto/2)
 
     def getXfin(self):
-        return self.x + (self.tex.ancho>>1)
+        return self.x + (self.tex.ancho/2)
 
     def getYfin(self):
-        return self.y + (self.tex.alto>>1)
+        return self.y + (self.tex.alto/2)
 
     def isInArea(self,x1,x2,y1,y2):
         xCenter = self.x

@@ -10,7 +10,7 @@ from soundBank import *
 
 #Importar Objetos
 from Bolita import Bola
-from Casilla import casilla
+from Casilla import Casilla
 
 
 # Se inician modulos
@@ -25,10 +25,10 @@ pygame.display.set_caption('PP-Block')
 clock = pygame.time.Clock()
 
 ########PRUEBA
-ba = Bola(300,200,pokebola,surface)
+ba = Bola(300,200,pong,surface)
 ba.setVel(sqrt(10.0),sqrt(10.0))
 
-ca = casilla(200,200,caja1,100,surface)
+ca = Casilla(200,200,caja1,100,surface)
 
 # Entra en bucle principal
 while True:
@@ -59,6 +59,7 @@ while True:
 
     ba.draw()
     ca.draw()
+    ca.drawCounter()
 
     # Vuelca lo dibujado en pantalla
     pygame.display.flip()
