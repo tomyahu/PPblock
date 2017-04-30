@@ -19,8 +19,11 @@ class MatCas():
         pos = self.celda2mapa(fila,columna)
         cas = CasillaVacia()
 
-        if (randint(0,1) == 1):
-            cas = Casilla(pos[0],pos[1],self.contUniversal,self.screen)
+        if (randint(0,3) > 1):
+            if self.contUniversal%10 == 0 and randint(0,1) == 0:
+                cas = Casilla2(pos[0],pos[1],self.contUniversal,self.screen)
+            else:
+                cas = Casilla(pos[0], pos[1], self.contUniversal, self.screen)
         return cas
 
     def testDead(self):
@@ -50,6 +53,9 @@ class MatCas():
         for i in range(8):
             for j in range(7):
                 self.matrizCasillas[i][j].draw()
+
+        contText = fuenteCaja.render("Nivel: " + str(self.contUniversal), 1, COLOR_White)
+        self.screen.blit(contText, (5, 30))
 
     def nextLevel(self):
 
