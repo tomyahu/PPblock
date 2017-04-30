@@ -18,6 +18,7 @@ pongIm = pygame.transform.scale(pongIm,(15,15))
 
 #Flecha
 flechaIm = pygame.image.load('images/Flecha3.png')
+flechaIm = pygame.transform.scale(flechaIm,(120,120))
 
 
 #Textura
@@ -29,4 +30,4 @@ pokebola = Textura(pokeIm,10,10)
 pong = Textura(pongIm,15,15)
 
 #Flecha
-flecha = Textura(flechaIm,90,90)
+flecha = Textura(flechaIm,120,120)
