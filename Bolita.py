@@ -36,12 +36,14 @@ class Bola():
     def colisionVer(self,borde):
         self.y = borde
         self.vely *= -1
+        pygame.mixer.stop
         blip.play()
         return
 
     def colisionHor(self,borde):
         self.x = borde
         self.velx *= -1
+        pygame.mixer.stop
         blip.play()
         return
 

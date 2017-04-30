@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 from consts import *
 from math import *
+from matCas import MatCas
 
 #Importar Imagenes y sonidos
 from imageBank import *
@@ -25,10 +26,10 @@ pygame.display.set_caption('PP-Block')
 clock = pygame.time.Clock()
 
 ########PRUEBA
-ba = Bola(300,200,pong,surface)
-ba.setVel(sqrt(10.0),sqrt(10.0))
 
-ca = Casilla(200,200,caja1,100,surface)
+Mat = MatCas(surface)
+
+a = 0
 
 # Entra en bucle principal
 while True:
@@ -49,17 +50,17 @@ while True:
     pygame.draw.line(surface, COLOR_White, [0, marDown], [winWidth, marDown], 2)
 
     ###########PRUEBA
-    a = 0
-    ba.updatePos()
+    keys = pygame.key.get_pressed()
+    if keys[K_DOWN] and a == 0:
+        Mat.nextLevel()
+        a = 1
+    else:
+        a = 0
 
-    if ba.isInArea(ca.getXin()-a,ca.getXfin()+a,ca.getYin()-a, ca.getYfin()+a):
-        ca.colisionBolita(ba)
+    print a
 
+    Mat.draw()
 
-
-    ba.draw()
-    ca.draw()
-    ca.drawCounter()
 
     # Vuelca lo dibujado en pantalla
     pygame.display.flip()

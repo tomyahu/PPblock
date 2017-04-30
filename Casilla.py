@@ -1,20 +1,39 @@
 from textura import *
 from Bolita import *
 from consts import *
+import pygame
 
 class Casilla():
 
-    def __init__(self,x,y,texture,contador,screen):
+    def __init__(self,x,y,contador,screen):
         self.x = x
         self.y = y
-        self.tex = texture
         self.cont = contador
+        self.contTotal = contador
         self.screen = screen
         self.id = 1
 
     def draw(self):
-        self.screen.blit(self.tex.image, (self.x - (self.tex.ancho>>1), self.y - (self.tex.alto>>1)))
+        a = COLOR_Red2[0] * self.cont / self.contTotal + COLOR_Yellow[0] * (
+            self.contTotal - self.cont) / self.contTotal
+
+        b = COLOR_Red2[1] * self.cont / self.contTotal + COLOR_Yellow[1] * (
+            self.contTotal - self.cont) / self.contTotal
+
+        c = COLOR_Red2[2] * self.cont / self.contTotal + COLOR_Yellow[2] * (
+            self.contTotal - self.cont) / self.contTotal
+
+        colorCaja = (a, b, c)
+
+        pygame.draw.line(self.screen, colorCaja, [self.x - 20.5, self.y - 20.5], [self.x - 20.5, self.y + 20.5], 2)
+        pygame.draw.line(self.screen, colorCaja, [self.x - 20.5, self.y + 20.5], [self.x + 20.5, self.y + 20.5], 2)
+        pygame.draw.line(self.screen, colorCaja, [self.x + 20.5, self.y + 20.5], [self.x + 20.5, self.y - 20.5], 2)
+        pygame.draw.line(self.screen, colorCaja, [self.x + 20.5, self.y - 20.5], [self.x - 20.5, self.y - 20.5], 2)
+        self.drawCounter()
         return
+
+    def kill(self):
+        del self
 
     def drawCounter(self):
         contText = fuenteCaja.render( str(self.cont), 1, COLOR_White)
@@ -29,7 +48,7 @@ class Casilla():
 
         if bola.getXin() - bola.velx < xin:
             bola.colisionHor(xin-1)
-        if bola.getXfin() - bola.velx >= xfin:
+        if bola.getXfin() - bola.velx > xfin:
             bola.colisionHor(xfin+1)
         if bola.getYin() - bola.vely < yin:
             bola.colisionVer(yin-1)
@@ -39,16 +58,16 @@ class Casilla():
         self.cont -= 1
 
     def getXin(self):
-        return self.x - (self.tex.ancho/2)
+        return self.x - (22.5)
 
     def getYin(self):
-        return self.y - (self.tex.alto/2)
+        return self.y - (22.5)
 
     def getXfin(self):
-        return self.x + (self.tex.ancho/2)
+        return self.x + (22.5)
 
     def getYfin(self):
-        return self.y + (self.tex.alto/2)
+        return self.y + (22.5)
 
     def setPos(self, x, y):
         self.x = x
@@ -60,3 +79,11 @@ class CasillaVacia():
 
     def __init__(self):
         self.id = 0
+        self.x = 0
+        self.y = 0
+
+    def draw(self):
+        return
+
+    def kill(self):
+        del self
