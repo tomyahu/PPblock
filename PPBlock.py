@@ -12,7 +12,7 @@ from soundBank import *
 #Importar Objetos
 from Bolita import Bola
 from Casilla import Casilla
-
+from Player import player
 
 # Se inician modulos
 pygame.init()
@@ -25,11 +25,14 @@ pygame.display.set_caption('PP-Block')
 # Se crea el reloj
 clock = pygame.time.Clock()
 
+# Mouse
+mouse = pygame.mouse
+
 ########PRUEBA
-
-Mat = MatCas(surface)
-
-a = 0
+player1 = player(surface,pong,flecha)
+player2 = player(surface,pong,flecha)
+player3 = player(surface,pong,flecha)
+player4 = player(surface,pong,flecha)
 
 # Entra en bucle principal
 while True:
@@ -50,17 +53,7 @@ while True:
     pygame.draw.line(surface, COLOR_White, [0, marDown], [winWidth, marDown], 2)
 
     ###########PRUEBA
-    keys = pygame.key.get_pressed()
-    if keys[K_DOWN] and a == 0:
-        Mat.nextLevel()
-        a = 1
-    else:
-        a = 0
 
-    print a
-
-    Mat.draw()
-
-
+    player1.draw(mouse)
     # Vuelca lo dibujado en pantalla
     pygame.display.flip()
