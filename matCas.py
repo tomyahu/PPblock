@@ -1,4 +1,5 @@
 from Casilla import *
+from PowerUps import *
 from consts import marDown, marUp, winWidth, winHeight, tamCas
 from random import randint
 import pygame
@@ -8,8 +9,9 @@ totalColumnas = 7
 
 class MatCas():
 
-    def __init__(self,screen):
+    def __init__(self,screen,player):
         self.screen = screen
+        self.player = player
         self.matrizCasillas = []
         self.contUniversal = 0
         for i in range(8):
@@ -18,8 +20,9 @@ class MatCas():
     def casillaRandom(self,fila,columna):
         pos = self.celda2mapa(fila,columna)
         cas = CasillaVacia()
+        rand = randint(0,3)
 
-        if (randint(0,3) > 1):
+        if (rand > 1):
             if self.contUniversal%10 == 0 and randint(0,1) == 0:
                 cas = Casilla2(pos[0],pos[1],self.contUniversal,self.screen)
             else:
@@ -38,6 +41,9 @@ class MatCas():
             if cas.cont == 0:
                 cas.kill()
                 self.matrizCasillas[fila][columna] = CasillaVacia()
+        elif cas.id == 2:
+            cas.kill()
+            self.matrizCasillas[fila][columna] = CasillaVacia()
 
     def testColision(self,bola):
         pos = self.mapa2celda(bola.x,bola.y)
@@ -47,6 +53,11 @@ class MatCas():
             if bola.isInArea(cas.getXin(),cas.getXfin(),cas.getYin(),cas.getYfin()):
                 cas.colisionBolita(bola)
                 self.checkCasillaDead(pos[0],pos[1])
+        elif cas.id == 2:
+            if bola.isInArea(cas.getXin(), cas.getXfin(), cas.getYin(), cas.getYfin()):
+                cas.colisionBolita(self.player)
+                self.checkCasillaDead(pos[0], pos[1])
+
 
 
     def draw(self):
@@ -63,14 +74,21 @@ class MatCas():
             for j in range(7):
                 if self.matrizCasillas[i][j].id == 1:
                     self.matrizCasillas[i][j].y += 45
+                elif self.matrizCasillas[i][j].id == 2:
+                    self.matrizCasillas[i][j].y += 45
 
         for i in [7,6,5,4,3,2,1]:
             for j in range(7):
                 self.matrizCasillas[i][j] = self.matrizCasillas[i - 1][j]
 
         self.contUniversal += 1
+        rand = randint(0,6)
+        pos = self.celda2mapa(0, rand)
         for k in range(7):
-            self.matrizCasillas[0][k] = self.casillaRandom(0,k)
+            if k == rand:
+                self.matrizCasillas[0][k] = BolaExtra(pos[0],pos[1],self.screen)
+            else:
+                self.matrizCasillas[0][k] = self.casillaRandom(0,k)
 
 
     def celda2mapa(self,fila,columna):

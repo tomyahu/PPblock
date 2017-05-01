@@ -46,8 +46,8 @@ class player():
         altura = marDown - mouse.get_pos()[1]
         self.drawFlecha(base,altura)
 
-        for i in self.bolitas:
-            i.draw()
+        for i in range(self.numBolitas):
+            self.bolitas[i].draw()
 
 
     def lanzarBolita(self,x,base,altura):
@@ -73,9 +73,11 @@ class player():
         return False
 
     def checkUltimaBola(self):
-        ultima = self.bolitas[len(self.bolitas)-1]
+        ultima = self.bolitas[self.numBolitas - 1]
         lim = marDown - self.texBola.alto/2 - 1
         if ultima.y > lim - default_Vel and ultima.vely > 0:
+            self.numBolitas = len(self.bolitas)
+            ultima.y = lim
             return True
         else:
             return False

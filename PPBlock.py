@@ -30,7 +30,7 @@ mouse = pygame.mouse
 keys = pygame.key
 ########PRUEBA
 player1 = player(surface,pong,flecha)
-Mat = MatCas(surface)
+Mat = MatCas(surface,player1)
 Mat.nextLevel()
 
 i = 0
