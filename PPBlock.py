@@ -25,15 +25,14 @@ pygame.display.set_caption('PP-Block')
 # Se crea el reloj
 clock = pygame.time.Clock()
 
-# Mouse
+# Mouse y teclas
 mouse = pygame.mouse
-
+keys = pygame.key
 ########PRUEBA
 player1 = player(surface,pong,flecha)
-player2 = player(surface,pong,flecha)
-player3 = player(surface,pong,flecha)
-player4 = player(surface,pong,flecha)
 
+
+i = 0
 # Entra en bucle principal
 while True:
 
@@ -53,7 +52,17 @@ while True:
     pygame.draw.line(surface, COLOR_White, [0, marDown], [winWidth, marDown], 2)
 
     ###########PRUEBA
+    base = mouse.get_pos()[0] - player1.x
+    altura = marDown - mouse.get_pos()[1]
 
+    if keys.get_pressed()[K_w] and player1.bolitas[0].vely == 0:
+        print 1
+        player1.lanzarBolita(0,base,altura)
+
+
+    player1.updateBolitas()
     player1.draw(mouse)
+    player1.checkPrimeraBola()
+
     # Vuelca lo dibujado en pantalla
     pygame.display.flip()

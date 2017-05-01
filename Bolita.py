@@ -28,9 +28,9 @@ class Bola():
         return
 
     def lanzar(self,base,altura):
-        hipotenusa = sqrt( (base<<1) + (altura<<1) )
+        hipotenusa = sqrt( (base**2) + (altura**2) )
         self.velx = (base/hipotenusa) * default_Vel
-        self.vely = (altura / hipotenusa) * default_Vel
+        self.vely = -(altura / hipotenusa) * default_Vel
         return
 
     def colisionVer(self,borde):
@@ -62,7 +62,9 @@ class Bola():
             self.colisionVer(marUp + ((self.tex.alto)/2))
 
         if self.y > marDown - ((self.tex.alto)/2):
-            self.colisionVer(marDown - ((self.tex.alto)/2))
+            self.vely = 0
+            self.velx = 0
+            self.y = marDown - self.tex.alto/2
 
     def getXin(self):
         return self.x - (self.tex.ancho/2)
