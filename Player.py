@@ -69,4 +69,14 @@ class player():
     def checkPrimeraBola(self):
         if self.bolitas[0].y > marDown - self.texBola.alto/2 - 1:
             self.setX(self.bolitas[0].x)
+            return True
+        return False
+
+    def checkUltimaBola(self):
+        ultima = self.bolitas[len(self.bolitas)-1]
+        lim = marDown - self.texBola.alto/2 - 1
+        if ultima.y > lim - default_Vel and ultima.vely > 0:
+            return True
+        else:
+            return False
 

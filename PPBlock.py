@@ -30,7 +30,8 @@ mouse = pygame.mouse
 keys = pygame.key
 ########PRUEBA
 player1 = player(surface,pong,flecha)
-
+Mat = MatCas(surface)
+Mat.nextLevel()
 
 i = 0
 # Entra en bucle principal
@@ -56,13 +57,21 @@ while True:
     altura = marDown - mouse.get_pos()[1]
 
     if keys.get_pressed()[K_w] and player1.bolitas[0].vely == 0:
-        print 1
         player1.lanzarBolita(0,base,altura)
+
+    player1.checkPrimeraBola()
+    for i in player1.bolitas:
+        Mat.testColision(i)
+
+    if player1.checkUltimaBola():
+        Mat.nextLevel()
 
 
     player1.updateBolitas()
     player1.draw(mouse)
-    player1.checkPrimeraBola()
+    Mat.draw()
+
+
 
     # Vuelca lo dibujado en pantalla
     pygame.display.flip()
