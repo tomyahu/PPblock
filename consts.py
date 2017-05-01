@@ -11,7 +11,7 @@ marDown = 60 + 45*9
 
 
 #Frames per Second
-FPS = 60
+FPS = 120
 
 
 #Colores
@@ -24,7 +24,7 @@ COLOR_Cyan = (49,207,231)
 
 
 #Velocidad por default de la bolita
-default_Vel = 10.0
+default_Vel = 5.0
 
 #TamCasillas
 tamCas = 45.0

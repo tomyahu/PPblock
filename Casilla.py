@@ -46,13 +46,13 @@ class Casilla():
         yin = self.getYin()
         yfin = self.getYfin()
 
-        if bola.getYin() - bola.vely < yin:
+        if bola.getYin() - bola.vely < yin and bola.vely > 0:
             bola.colisionVer(yin-1)
-        if bola.getXin() - bola.velx < xin:
+        if bola.getXin() - bola.velx < xin and bola.velx > 0:
             bola.colisionHor(xin-1)
-        if bola.getYfin() - bola.vely > yfin:
+        if bola.getYfin() - bola.vely > yfin and bola.vely < 0:
             bola.colisionVer(yfin+1)
-        if bola.getXfin() - bola.velx > xfin:
+        if bola.getXfin() - bola.velx > xfin and bola.velx < 0:
             bola.colisionHor(xfin+1)
 
         self.cont -= 1
