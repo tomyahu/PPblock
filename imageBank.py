@@ -18,8 +18,11 @@ pokeIm = pygame.transform.scale(pokeIm,(10,10))
 pongIm = pygame.image.load('images/Pong.png')
 pongIm = pygame.transform.scale(pongIm,(15,15))
 
-
-
+#Botones
+playIm = pygame.image.load('images/Play.png')
+playIm = pygame.transform.scale(playIm,(57*4,80))
+playIm2 = pygame.image.load('images/Play2.png')
+playIm2 = pygame.transform.scale(playIm2,(57*4,80))
 
 #Flecha
 flechaIm = pygame.image.load('images/Flecha3.png')
@@ -35,5 +38,10 @@ bolaExtra = Textura(bolaExtraIm,25,25)
 pokebola = Textura(pokeIm,10,10)
 pong = Textura(pongIm,15,15)
 
+todasLasBolas = [pong,pokebola]
+
 #Flecha
 flecha = Textura(flechaIm,120,120)
+
+#Botones
+playTex = [Textura(playIm,57*4,80),Textura(playIm2,57*4,80)]

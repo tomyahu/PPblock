@@ -66,7 +66,7 @@ class MatCas():
                 self.matrizCasillas[i][j].draw()
 
         contText = fuenteCaja.render("Nivel: " + str(self.contUniversal), 1, COLOR_White)
-        self.screen.blit(contText, (5, 30))
+        self.screen.blit(contText, (5, 40))
 
     def nextLevel(self):
 
