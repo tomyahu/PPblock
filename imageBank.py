@@ -29,10 +29,22 @@ restartIm = pygame.transform.scale(restartIm,(57*4,80))
 restartIm2 = pygame.image.load('images/Restart2.png')
 restartIm2 = pygame.transform.scale(restartIm2,(57*4,80))
 
+pausaIm = pygame.image.load('images/botonPausa.png')
+pausaIm = pygame.transform.scale(pausaIm,(50,50))
+pausaIm2 = pygame.image.load('images/botonPausa2.png')
+pausaIm2 = pygame.transform.scale(pausaIm2,(50,50))
+
+quitIm = pygame.image.load('images/Quit1.png')
+quitIm = pygame.transform.scale(quitIm,(57*4,80))
+quitIm2 = pygame.image.load('images/Quit2.png')
+quitIm2 = pygame.transform.scale(quitIm2,(57*4,80))
+
 #Flecha
 flechaIm = pygame.image.load('images/Flecha3.png')
 flechaIm = pygame.transform.scale(flechaIm,(120,120))
 
+#Fondo
+gameOverScreen = pygame.image.load('images/gameOver.png')
 
 #Textura
 #Cajas
@@ -51,3 +63,5 @@ flecha = Textura(flechaIm,120,120)
 #Botones
 playTex = [Textura(playIm,57*4,80),Textura(playIm2,57*4,80)]
 restartTex = [Textura(restartIm,57*4,80),Textura(restartIm2,57*4,80)]
+pausaTex = [Textura(pausaIm,50,50),Textura(pausaIm2,50,50)]
+quitTex = [Textura(quitIm,57*4,80),Textura(quitIm2,57*4,80)]

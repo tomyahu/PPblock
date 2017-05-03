@@ -34,6 +34,7 @@ keys = pygame.key
 player1 = player(surface,pokebola,flecha)
 Mat = MatCas(surface,player1)
 Mat.nextLevel()
+pausa = Button(winWidth-30,marUp/2,pausaTex,surface)
 
 #Contador 1
 a = 0
@@ -78,6 +79,47 @@ def Menu():
 
         pygame.display.flip()
 
+def GameOver():
+
+    restart = Button(winWidth / 2, 375, restartTex, surface)
+    quitB = Button(winWidth/2, 475,quitTex,surface)
+
+    while True:
+
+        # Setea el reloj
+        clock.tick(FPS)
+
+        # Busca eventos de aplicacion
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                exit()
+
+        # Dibuja la pantalla
+        surface.fill(COLOR_Black)
+
+        if quitB.inArea(mouse.get_pos()[0],mouse.get_pos()[1]):
+            if mouse.get_pressed()[0]:
+                exit()
+                return
+            quitB.im = 1
+        else:
+            quitB.im = 0
+
+        if restart.inArea(mouse.get_pos()[0],mouse.get_pos()[1]):
+            if mouse.get_pressed()[0]:
+                player1.restart()
+                Mat.restart()
+                return
+            restart.im = 1
+        else:
+            restart.im = 0
+
+        surface.blit(gameOverScreen,(0,0))
+        quitB.draw()
+        restart.draw()
+
+
+        pygame.display.flip()
 
 
 Menu()
@@ -96,11 +138,18 @@ while True:
     if keys.get_pressed()[K_p]:
         Menu()
 
+    if pausa.inArea(mouse.get_pos()[0], mouse.get_pos()[1]):
+        if mouse.get_pressed()[0]:
+            Menu()
+        pausa.im = 1
+    else:
+        pausa.im = 0
+
 
     base = mouse.get_pos()[0] - player1.x
     altura = marDown - mouse.get_pos()[1]
 
-    if keys.get_pressed()[K_w] and player1.bolitasQuietas():
+    if keys.get_pressed()[K_w] and player1.bolitasQuietas() and b == 0:
         player1.lanzarBolita(0,base,altura)
         player1.base = base
         player1.altura = altura
@@ -130,6 +179,10 @@ while True:
         b = 0
         a = 0
 
+    if Mat.testDead():
+        GameOver()
+
+
     #Dibuja
     # Dibuja la pantalla
     surface.fill(COLOR_Black)
@@ -146,6 +199,7 @@ while True:
     player1.draw(mouse)
     player1.drawNumBolitas()
     Mat.draw()
+    pausa.draw()
 
 
 
