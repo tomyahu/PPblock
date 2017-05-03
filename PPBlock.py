@@ -41,7 +41,8 @@ b = 0
 
 def Menu():
 
-    play = PlayButton(winWidth/2,475,playTex,surface)
+    play = Button(winWidth/2,475,playTex,surface)
+    restart = Button(winWidth / 2, 375, restartTex, surface)
 
     while True:
 
@@ -63,7 +64,17 @@ def Menu():
         else:
             play.im = 0
 
+        if restart.inArea(mouse.get_pos()[0],mouse.get_pos()[1]):
+            if mouse.get_pressed()[0]:
+                player1.restart()
+                Mat.restart()
+                return
+            restart.im = 1
+        else:
+            restart.im = 0
+
         play.draw()
+        restart.draw()
 
         pygame.display.flip()
 
@@ -108,6 +119,8 @@ while True:
     if player1.checkUltimaBola() > 0:
         b = 1
 
+    player1.updateBolitas()
+
     if b > 0:
         b += 1
 
@@ -116,9 +129,6 @@ while True:
         player1.numBolitas = len(player1.bolitas)
         b = 0
         a = 0
-
-
-    player1.updateBolitas()
 
     #Dibuja
     # Dibuja la pantalla

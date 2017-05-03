@@ -32,10 +32,10 @@ class player():
 
     def drawFlecha(self,base,altura):
         angle = self.angulo(base,altura)
-        if angle > 70:
-            angle = 70
-        elif angle < -70:
-            angle = -70
+        if angle > 80:
+            angle = 80
+        elif angle < -80:
+            angle = -80
         Flecha = pygame.transform.rotate(self.texFlecha.image,angle)
         flechaSize = Flecha.get_rect().size
 
@@ -57,12 +57,12 @@ class player():
 
 
     def lanzarBolita(self,x,base,altura):
-        if base > 0 and float(altura)/base < tan(pi/9):
-            base = cos(pi/9)
-            altura = sin(pi/9)
-        elif base < 0 and (-1)*float(altura)/base < tan(pi/9):
-            base = (-1)*cos(pi / 9)
-            altura = sin(pi / 9)
+        if base > 0 and float(altura)/base < tan(pi/18):
+            base = cos(pi/18)
+            altura = sin(pi/18)
+        elif base < 0 and (-1)*float(altura)/base < tan(pi/18):
+            base = (-1)*cos(pi / 18)
+            altura = sin(pi / 18)
         self.bolitas[x].lanzar(float(base),float(altura))
 
     def setX(self,x):
@@ -82,7 +82,7 @@ class player():
     def reunirBolas(self):
         lim = marDown - self.texBola.alto / 2 - 1
         for i in self.bolitas:
-            if i.y > lim:
+            if i.y >= lim:
                 i.x = self.x
 
     def bolitasQuietas(self):
@@ -97,7 +97,15 @@ class player():
         lim = marDown - self.texBola.alto/2 - 1
         for i in range(self.numBolitas):
             if self.bolitas[i].y > lim - default_Vel and self.bolitas[i].vely > 0:
-                self.bolitas[i].y = lim
+                self.bolitas[i].y = lim + 1
+                self.bolitas[i].vely = 0
+                self.bolitas[i].velx = 0
                 suma += 1
         return suma
+
+    def restart(self):
+        self.x = winWidth / 2
+        self.bolitas = [Bola(self.x, marDown - self.texBola.alto / 2, self.texBola, self.screen)]
+        self.numBolitas = 1
+
 

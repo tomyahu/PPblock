@@ -58,7 +58,14 @@ class MatCas():
                 cas.colisionBolita(self.player)
                 self.checkCasillaDead(pos[0], pos[1])
 
-
+    def restart(self):
+        self.matrizCasillas = []
+        self.contUniversal = 0
+        for i in range(8):
+            self.matrizCasillas += [
+                [CasillaVacia(), CasillaVacia(), CasillaVacia(), CasillaVacia(), CasillaVacia(), CasillaVacia(),
+                 CasillaVacia()]]
+        self.nextLevel()
 
     def draw(self):
         for i in range(8):
