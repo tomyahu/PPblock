@@ -8,8 +8,12 @@ pygame.init()
 #Sprites
 #Cajas
 caja1Im = pygame.image.load('images/Caja1.png')
+
 bolaExtraIm = pygame.image.load('images/BolaExtra.png')
 bolaExtraIm = pygame.transform.scale(bolaExtraIm,(25,25))
+
+randomThIm = pygame.image.load('images/RandomThrow.png')
+randomThIm = pygame.transform.scale(randomThIm,(25,25))
 
 #Bolas
 pokeIm = pygame.image.load('images/Pokebola.png')
@@ -50,6 +54,7 @@ gameOverScreen = pygame.image.load('images/gameOver.png')
 #Cajas
 caja1 = Textura(caja1Im,45,45)
 bolaExtra = Textura(bolaExtraIm,25,25)
+randomThrow = Textura(randomThIm,25,25)
 
 #Bolas
 pokebola = Textura(pokeIm,10,10)

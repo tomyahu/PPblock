@@ -2,6 +2,7 @@ from textura import *
 from Bolita import *
 from imageBank import *
 import pygame
+from random import randint
 
 class PowerUp():
 
@@ -41,9 +42,28 @@ class BolaExtra(PowerUp):
     def __init__(self,x,y,screen):
         PowerUp.__init__(self,x,y,bolaExtra,screen)
 
+
     def colisionBolita(self, player):
         player.anadirBolita()
 
+class randomBall(PowerUp):
+
+    def __init__(self,x,y,screen):
+        PowerUp.__init__(self,x,y,randomThrow,screen)
+        self.id = 3
+        self.touched = False
+
+    def colisionBolita(self, bola):
+        base = randint(1,100)
+        altura = randint(1, 100)
+
+        if base > 0 and float(altura)/base < tan(pi/18):
+            base = cos(pi/18)
+            altura = sin(pi/18)
+        elif base < 0 and (-1)*float(altura)/base < tan(pi/18):
+            base = (-1)*cos(pi / 18)
+            altura = sin(pi / 18)
+        bola.lanzar(base,altura)
 
 
 

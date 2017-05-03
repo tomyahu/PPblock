@@ -27,6 +27,9 @@ class MatCas():
                 cas = Casilla2(pos[0],pos[1],self.contUniversal,self.screen)
             else:
                 cas = Casilla(pos[0], pos[1], self.contUniversal, self.screen)
+        elif(rand == 1):
+            aux = [randomBall(pos[0],pos[1],self.screen),CasillaVacia(),CasillaVacia(),CasillaVacia()]
+            cas = aux[randint(0,len(aux)-1)]
         return cas
 
     def testDead(self):
@@ -57,6 +60,10 @@ class MatCas():
             if bola.isInArea(cas.getXin(), cas.getXfin(), cas.getYin(), cas.getYfin()):
                 cas.colisionBolita(self.player)
                 self.checkCasillaDead(pos[0], pos[1])
+        elif cas.id == 3:
+            if bola.isInArea(cas.getXin(), cas.getXfin(), cas.getYin(), cas.getYfin()):
+                cas.colisionBolita(bola)
+                cas.touched = True
 
     def restart(self):
         self.matrizCasillas = []
@@ -79,10 +86,12 @@ class MatCas():
 
         for i in range(0,8,1):
             for j in range(7):
-                if self.matrizCasillas[i][j].id == 1:
-                    self.matrizCasillas[i][j].y += 45
-                elif self.matrizCasillas[i][j].id == 2:
-                    self.matrizCasillas[i][j].y += 45
+                if self.matrizCasillas[i][j].id == 3:
+                    if self.matrizCasillas[i][j].touched:
+                        self.matrizCasillas[i][j].kill()
+                        self.matrizCasillas[i][j] = CasillaVacia()
+
+                self.matrizCasillas[i][j].y += 45
 
         for i in [7,6,5,4,3,2,1]:
             for j in range(7):

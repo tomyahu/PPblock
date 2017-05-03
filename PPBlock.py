@@ -42,8 +42,9 @@ b = 0
 
 def Menu():
 
-    play = Button(winWidth/2,475,playTex,surface)
-    restart = Button(winWidth / 2, 375, restartTex, surface)
+    play = Button(winWidth/2,375,playTex,surface)
+    restart = Button(winWidth / 2, 275, restartTex, surface)
+    quitB = Button(winWidth / 2, 475, quitTex, surface)
 
     while True:
 
@@ -74,8 +75,17 @@ def Menu():
         else:
             restart.im = 0
 
+        if quitB.inArea(mouse.get_pos()[0],mouse.get_pos()[1]):
+            if mouse.get_pressed()[0]:
+                exit()
+                return
+            quitB.im = 1
+        else:
+            quitB.im = 0
+
         play.draw()
         restart.draw()
+        quitB.draw()
 
         pygame.display.flip()
 
