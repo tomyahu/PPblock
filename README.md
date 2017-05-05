@@ -2,11 +2,10 @@ Cosas por Hacer:
 
 -Hacer la tittle screen
     -Agregar cambio de bolitas (con displayer)
+    
+-Agregar Casilla Triangular
 
--PowerUps
-    -Random throw
 
--Agregar boton de pausa a PP-Block
 
 OPCIONAL
 
