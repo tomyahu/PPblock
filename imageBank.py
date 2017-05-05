@@ -15,6 +15,14 @@ bolaExtraIm = pygame.transform.scale(bolaExtraIm,(25,25))
 randomThIm = pygame.image.load('images/RandomThrow.png')
 randomThIm = pygame.transform.scale(randomThIm,(25,25))
 
+blowFilaIm = pygame.image.load('images/BlowFila.png')
+blowFilaIm = pygame.transform.scale(blowFilaIm,(25,25))
+
+blowColIm = pygame.image.load('images/BlowColumna.png')
+blowColIm = pygame.transform.scale(blowColIm,(25,25))
+
+
+
 #Bolas
 pokeIm = pygame.image.load('images/Pokebola.png')
 pokeIm = pygame.transform.scale(pokeIm,(10,10))
@@ -55,6 +63,8 @@ gameOverScreen = pygame.image.load('images/gameOver.png')
 caja1 = Textura(caja1Im,45,45)
 bolaExtra = Textura(bolaExtraIm,25,25)
 randomThrow = Textura(randomThIm,25,25)
+blFila = Textura(blowFilaIm,25,25)
+blCol = Textura(blowColIm,25,25)
 
 #Bolas
 pokebola = Textura(pokeIm,10,10)

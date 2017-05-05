@@ -28,7 +28,7 @@ class MatCas():
             else:
                 cas = Casilla(pos[0], pos[1], self.contUniversal, self.screen)
         elif(rand == 1):
-            aux = [randomBall(pos[0],pos[1],self.screen),CasillaVacia(),CasillaVacia(),CasillaVacia()]
+            aux = [randomBall(pos[0],pos[1],self.screen),restarFila(pos[0],pos[1],self.screen),restarCol(pos[0],pos[1],self.screen),CasillaVacia()]
             cas = aux[randint(0,len(aux)-1)]
         return cas
 
@@ -48,6 +48,7 @@ class MatCas():
             cas.kill()
             self.matrizCasillas[fila][columna] = CasillaVacia()
 
+
     def testColision(self,bola):
         pos = self.mapa2celda(bola.x,bola.y)
 
@@ -64,6 +65,12 @@ class MatCas():
             if bola.isInArea(cas.getXin(), cas.getXfin(), cas.getYin(), cas.getYfin()):
                 cas.colisionBolita(bola)
                 cas.touched = True
+        elif cas.id == 4:
+            if bola.isInArea(cas.getXin(), cas.getXfin(), cas.getYin(), cas.getYfin()) and bola.contPowerup == 0:
+                bola.contPowerup = 10
+                cas.colisionBolita(self)
+                cas.touched = True
+                pygame.draw.line(self.screen, COLOR_White, [0, cas.y], [winWidth, cas.y], 2)
 
     def restart(self):
         self.matrizCasillas = []
@@ -86,7 +93,7 @@ class MatCas():
 
         for i in range(0,8,1):
             for j in range(7):
-                if self.matrizCasillas[i][j].id == 3:
+                if self.matrizCasillas[i][j].id >= 3:
                     if self.matrizCasillas[i][j].touched:
                         self.matrizCasillas[i][j].kill()
                         self.matrizCasillas[i][j] = CasillaVacia()

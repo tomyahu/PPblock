@@ -16,6 +16,7 @@ class Bola():
         self.vely = 0.0
         self.tex = texture
         self.screen = screen
+        self.contPowerup = 0
         return
 
     def draw(self):
@@ -65,6 +66,9 @@ class Bola():
             self.vely = 0
             self.velx = 0
             self.y = marDown - self.tex.alto/2
+
+        if self.contPowerup > 0:
+            self.contPowerup -= 1
 
     def getXin(self):
         return self.x - (self.tex.ancho/2)
