@@ -3,6 +3,7 @@ from Bolita import *
 from imageBank import *
 import pygame
 from random import randint
+from math import sqrt
 
 class PowerUp():
 
@@ -35,6 +36,20 @@ class PowerUp():
     def setPos(self, x, y):
         self.x = x
         self.y = y
+
+    def isInArea(self,bola):
+        xCenter = bola.x
+        yCenter = bola.y
+
+        r1 = float(self.tex.alto) / 2
+        r2 = float(bola.tex.alto) / 2
+
+        dist = sqrt((self.x - xCenter)**2 + (self.y - yCenter)**2)
+
+        if dist < (r1 + r2):
+            return True
+        else:
+            return False
 
 
 class BolaExtra(PowerUp):

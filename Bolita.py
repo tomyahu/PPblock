@@ -81,12 +81,3 @@ class Bola():
 
     def getYfin(self):
         return self.y + (self.tex.alto/2)
-
-    def isInArea(self,x1,x2,y1,y2):
-        xCenter = self.x
-        yCenter = self.y
-
-        if xCenter > x1 and xCenter < x2 and yCenter > y1 and yCenter < y2:
-            return True
-        else:
-            return False

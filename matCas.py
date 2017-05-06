@@ -26,7 +26,8 @@ class MatCas():
             if self.contUniversal%10 == 0 and randint(0,1) == 0:
                 cas = Casilla2(pos[0],pos[1],self.contUniversal,self.screen)
             else:
-                cas = Casilla(pos[0], pos[1], self.contUniversal, self.screen)
+                aux = [Casilla(pos[0], pos[1], self.contUniversal, self.screen), CasillaTriangular1(pos[0], pos[1], self.contUniversal, self.screen), CasillaTriangular2(pos[0], pos[1], self.contUniversal, self.screen), CasillaTriangular3(pos[0], pos[1], self.contUniversal, self.screen), CasillaTriangular4(pos[0], pos[1], self.contUniversal, self.screen)]
+                cas = aux[randint(0,len(aux) - 1)]
         elif(rand == 1):
             aux = [randomBall(pos[0],pos[1],self.screen),restarFila(pos[0],pos[1],self.screen),restarCol(pos[0],pos[1],self.screen),CasillaVacia()]
             cas = aux[randint(0,len(aux)-1)]
@@ -34,14 +35,14 @@ class MatCas():
 
     def testDead(self):
         for i in range(7):
-            if self.matrizCasillas[7][i].id != 0:
+            if self.matrizCasillas[7][i].id == 1:
                 return True
         return False
 
     def checkCasillaDead(self,fila,columna):
         cas = self.matrizCasillas[fila][columna]
         if cas.id == 1:
-            if cas.cont == 0:
+            if cas.cont <= 0:
                 cas.kill()
                 self.matrizCasillas[fila][columna] = CasillaVacia()
         elif cas.id == 2:
@@ -54,19 +55,19 @@ class MatCas():
 
         cas = self.matrizCasillas[pos[0]][pos[1]]
         if cas.id == 1:
-            if bola.isInArea(cas.getXin(),cas.getXfin(),cas.getYin(),cas.getYfin()):
+            if cas.isInArea(bola):
                 cas.colisionBolita(bola)
                 self.checkCasillaDead(pos[0],pos[1])
         elif cas.id == 2:
-            if bola.isInArea(cas.getXin(), cas.getXfin(), cas.getYin(), cas.getYfin()):
+            if cas.isInArea(bola):
                 cas.colisionBolita(self.player)
                 self.checkCasillaDead(pos[0], pos[1])
         elif cas.id == 3:
-            if bola.isInArea(cas.getXin(), cas.getXfin(), cas.getYin(), cas.getYfin()):
+            if cas.isInArea(bola):
                 cas.colisionBolita(bola)
                 cas.touched = True
         elif cas.id == 4:
-            if bola.isInArea(cas.getXin(), cas.getXfin(), cas.getYin(), cas.getYfin()) and bola.contPowerup == 0:
+            if cas.isInArea(bola) and bola.contPowerup == 0:
                 bola.contPowerup = 10
                 cas.colisionBolita(self)
                 cas.touched = True
