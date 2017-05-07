@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 from consts import *
 from math import *
+from random import randint
 
 #Importar Imagenes y sonidos
 from imageBank import *
@@ -39,6 +40,7 @@ pausa = Button(winWidth-30,marUp/2,pausaTex,surface)
 #Contador 1
 a = 0
 b = 0
+c = 0
 
 def Menu():
 
@@ -172,8 +174,33 @@ while True:
 
 
     player1.checkPrimeraBola()
+
+    choques = False
     for i in player1.bolitas:
-        Mat.testColision(i)
+        choques = choques or Mat.testColision(i)
+
+    if not choques:
+        c += 1
+    else:
+        c = 0
+
+    if c == 360:
+        for bola in player1.bolitas:
+            if bola.vely != 0 or bola.velx != 0:
+                base = randint(1, 100)
+                altura = randint(1, 100)
+
+                if base > 0 and float(altura) / base < tan(pi / 18):
+                    base = cos(pi / 18)
+                    altura = sin(pi / 18)
+                elif base < 0 and (-1) * float(altura) / base < tan(pi / 18):
+                    base = (-1) * cos(pi / 18)
+                    altura = sin(pi / 18)
+                bola.lanzar(base, altura)
+
+    if c >= 480:
+        c = 0
+
 
     if player1.checkUltimaBola() > 0:
         b = 1
@@ -183,11 +210,13 @@ while True:
     if b > 0:
         b += 1
 
-    if player1.bolitasQuietas() and b == 10:
-        Mat.nextLevel()
-        player1.numBolitas = len(player1.bolitas)
-        b = 0
-        a = 0
+    if player1.bolitasQuietas():
+        c = 0
+        if b == 10:
+            Mat.nextLevel()
+            player1.numBolitas = len(player1.bolitas)
+            b = 0
+            a = 0
 
     if Mat.testDead():
         GameOver()
@@ -196,6 +225,9 @@ while True:
     #Dibuja
     # Dibuja la pantalla
     surface.fill(COLOR_Black)
+
+    if c >= 360:
+        surface.blit(fondoAzarIm, (winWidth/2 - 125, marUp + 100))
 
     if Mat.contUniversal < 100:
         colorEspacio = COLOR_White[0]*(100 - Mat.contUniversal)/100

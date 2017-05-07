@@ -57,6 +57,10 @@ flechaIm = pygame.transform.scale(flechaIm,(120,120))
 
 #Fondo
 gameOverScreen = pygame.image.load('images/gameOver.png')
+fondoAzarIm = pygame.transform.scale(randomThIm,(250,250))
+
+
+
 
 #Textura
 #Cajas

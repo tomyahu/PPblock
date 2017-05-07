@@ -58,20 +58,25 @@ class MatCas():
             if cas.isInArea(bola):
                 cas.colisionBolita(bola)
                 self.checkCasillaDead(pos[0],pos[1])
+                return True
         elif cas.id == 2:
             if cas.isInArea(bola):
                 cas.colisionBolita(self.player)
                 self.checkCasillaDead(pos[0], pos[1])
+                return True
         elif cas.id == 3:
             if cas.isInArea(bola):
                 cas.colisionBolita(bola)
                 cas.touched = True
+                return True
         elif cas.id == 4:
             if cas.isInArea(bola) and bola.contPowerup == 0:
                 bola.contPowerup = 10
                 cas.colisionBolita(self)
                 cas.touched = True
                 pygame.draw.line(self.screen, COLOR_White, [0, cas.y], [winWidth, cas.y], 2)
+                return True
+        return False
 
     def restart(self):
         self.matrizCasillas = []
