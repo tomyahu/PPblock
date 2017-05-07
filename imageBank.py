@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from textura import *
+from Avatar import *
 
 pygame.init()
 
@@ -51,6 +52,27 @@ quitIm = pygame.transform.scale(quitIm,(57*4,80))
 quitIm2 = pygame.image.load('images/Quit2.png')
 quitIm2 = pygame.transform.scale(quitIm2,(57*4,80))
 
+cambioDerIm = pygame.image.load('images/cambioDer2.png')
+cambioDerIm = pygame.transform.scale(cambioDerIm,(60,60))
+cambioDerIm2 = pygame.image.load('images/cambioDer3.png')
+cambioDerIm2 = pygame.transform.scale(cambioDerIm2,(60,60))
+
+cambioIzqIm = pygame.image.load('images/cambioIzq2.png')
+cambioIzqIm = pygame.transform.scale(cambioIzqIm,(60,60))
+cambioIzqIm2 = pygame.image.load('images/cambioIzq3.png')
+cambioIzqIm2 = pygame.transform.scale(cambioIzqIm2,(60,60))
+
+backIm = pygame.image.load('images/Back.png')
+backIm = pygame.transform.scale(backIm,(57*4,80))
+backIm2 = pygame.image.load('images/Back2.png')
+backIm2 = pygame.transform.scale(backIm2,(57*4,80))
+
+customIm = pygame.image.load('images/Custom.png')
+customIm = pygame.transform.scale(customIm,(57*4,80))
+customIm2 = pygame.image.load('images/Custom2.png')
+customIm2 = pygame.transform.scale(customIm2,(57*4,80))
+
+
 #Flecha
 flechaIm = pygame.image.load('images/Flecha3.png')
 flechaIm = pygame.transform.scale(flechaIm,(120,120))
@@ -84,3 +106,11 @@ playTex = [Textura(playIm,57*4,80),Textura(playIm2,57*4,80)]
 restartTex = [Textura(restartIm,57*4,80),Textura(restartIm2,57*4,80)]
 pausaTex = [Textura(pausaIm,50,50),Textura(pausaIm2,50,50)]
 quitTex = [Textura(quitIm,57*4,80),Textura(quitIm2,57*4,80)]
+cambioDerTex = [Textura(cambioDerIm,60,60),Textura(cambioDerIm2,60,60)]
+cambioIzqTex = [Textura(cambioIzqIm,60,60),Textura(cambioIzqIm2,60,60)]
+backTex = [Textura(backIm,57*4,80),Textura(backIm2,57*4,80)]
+customTex = [Textura(customIm,57*4,80),Textura(customIm2,57*4,80)]
+
+#Avatares
+cisnerosIm = pygame.image.load('images/avatarCisneros275.png')
+avatarCisneros = Avatar(cisnerosIm,60.5,57.75)

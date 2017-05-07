@@ -7,11 +7,12 @@ from math import *
 
 class player():
 
-    def __init__(self, screen, texture, texturaFlecha):
+    def __init__(self, screen, texture, texturaFlecha, avatar):
         self.x = winWidth/2
         self.texBola = texture
         self.texFlecha = texturaFlecha
         self.screen = screen
+        self.avatar = avatar
         self.bolitas = [Bola(self.x,marDown - self.texBola.alto/2,self.texBola,self.screen)]
         self.numBolitas = 1
         self.base = 0
@@ -51,6 +52,7 @@ class player():
         base = mouse.get_pos()[0] - self.x
         altura = marDown - mouse.get_pos()[1]
         self.drawFlecha(base,altura)
+        self.screen.blit(self.avatar.image,(self.x - self.avatar.px, marDown - self.avatar.py))
 
         for i in range(self.numBolitas):
             self.bolitas[i].draw()
