@@ -47,7 +47,7 @@ c = 0
 
 def Customize():
 
-    listaBolas = [pong, pokebola]
+    listaBolas = [pong, pokebola, paty]
     indice = 0
     cambio = False
     bolaDer = Button(winWidth/2 + 100,375,cambioDerTex,surface)

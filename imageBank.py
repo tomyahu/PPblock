@@ -31,6 +31,9 @@ pokeIm = pygame.transform.scale(pokeIm,(10,10))
 pongIm = pygame.image.load('images/Pong.png')
 pongIm = pygame.transform.scale(pongIm,(15,15))
 
+patyIm = pygame.image.load('images/PatyBall.png')
+patyIm = pygame.transform.scale(patyIm,(30,30))
+
 #Botones
 playIm = pygame.image.load('images/Play.png')
 playIm = pygame.transform.scale(playIm,(57*4,80))
@@ -95,6 +98,7 @@ blCol = Textura(blowColIm,25,25)
 #Bolas
 pokebola = Textura(pokeIm,10,10)
 pong = Textura(pongIm,15,15)
+paty = Textura(patyIm,30,30)
 
 todasLasBolas = [pong,pokebola]
 
