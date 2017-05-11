@@ -24,7 +24,7 @@ COLOR_Cyan = (49,207,231)
 
 
 #Velocidad por default de la bolita
-default_Vel = 5.0
+default_Vel = 5
 
 #Pixeles separacion bolitas
 pix = 8
