@@ -265,9 +265,6 @@ while True:
             player1.lanzarBolita(a/pix,player1.base,player1.altura)
         a+=1
 
-
-    player1.checkPrimeraBola()
-
     choques = False
     for i in player1.bolitas:
         choques = choques or Mat.testColision(i)
@@ -310,6 +307,7 @@ while True:
             player1.numBolitas = len(player1.bolitas)
             b = 0
             a = 0
+            player1.prim = False
 
     if Mat.testDead():
         GameOver()

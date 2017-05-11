@@ -17,6 +17,7 @@ class player():
         self.numBolitas = 1
         self.base = 0
         self.altura = 0
+        self.prim = False
 
     def anadirBolita(self):
         self.bolitas += [Bola(self.x,marDown - self.texBola.alto/2,self.texBola,self.screen)]
@@ -75,12 +76,6 @@ class player():
             i.updatePos()
         self.reunirBolas()
 
-    def checkPrimeraBola(self):
-        if self.bolitas[0].y > marDown - self.texBola.alto/2 - 1:
-            self.setX(self.bolitas[0].x)
-            return True
-        return False
-
     def reunirBolas(self):
         lim = marDown - self.texBola.alto / 2 - 1
         for i in self.bolitas:
@@ -99,6 +94,9 @@ class player():
         lim = marDown - self.texBola.alto/2 - 1
         for i in range(self.numBolitas):
             if self.bolitas[i].y > lim - default_Vel and self.bolitas[i].vely > 0:
+                if not self.prim:
+                    self.prim = True
+                    self.setX(self.bolitas[i].x)
                 self.bolitas[i].y = lim + 1
                 self.bolitas[i].vely = 0
                 self.bolitas[i].velx = 0
