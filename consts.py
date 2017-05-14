@@ -1,4 +1,5 @@
 import pygame
+from pygame.locals import *
 pygame.init()
 
 #Dimensiones ventana
@@ -34,3 +35,7 @@ tamCas = 45.0
 
 #fuentes
 fuenteCaja = pygame.font.SysFont("Eras Demi ITC", 16)
+
+# Mouse y teclas
+mouse = pygame.mouse
+keys = pygame.key
