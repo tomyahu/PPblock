@@ -2,6 +2,7 @@ from Casilla import *
 from PowerUps import *
 from consts import marDown, marUp, winWidth, winHeight, tamCas
 from random import randint
+from soundBank import laser
 import pygame
 
 totalFilas = 8
@@ -74,7 +75,8 @@ class MatCas():
                 bola.contPowerup = 10
                 cas.colisionBolita(self)
                 cas.touched = True
-                pygame.draw.line(self.screen, COLOR_White, [0, cas.y], [winWidth, cas.y], 2)
+                cas.laser = 3
+                laser.play()
                 return True
         return False
 

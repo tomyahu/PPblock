@@ -4,6 +4,7 @@ from imageBank import *
 import pygame
 from random import randint
 from math import sqrt
+from consts import COLOR_White
 
 class PowerUp():
 
@@ -86,6 +87,7 @@ class restarFila(PowerUp):
         PowerUp.__init__(self, x, y, blFila, screen)
         self.id = 4
         self.touched = False
+        self.laser = 0
 
     def colisionBolita(self,matCas):
         a = matCas.mapa2celda(self.x,self.y)
@@ -98,12 +100,20 @@ class restarFila(PowerUp):
                 b = matCas.mapa2celda(i.x,i.y)
                 matCas.checkCasillaDead(b[0],b[1])
 
+    def draw(self):
+        PowerUp.draw(self)
+        if self.laser > 0:
+            pygame.draw.line(self.screen, COLOR_White, [0, self.y], [winWidth, self.y], 2)
+            self.laser -= 1
+
+
 class restarCol(PowerUp):
 
     def __init__(self,x,y,screen):
         PowerUp.__init__(self, x, y, blCol, screen)
         self.id = 4
         self.touched = False
+        self.laser = 0
 
     def colisionBolita(self,matCas):
         a = matCas.mapa2celda(self.x,self.y)
@@ -116,6 +126,11 @@ class restarCol(PowerUp):
                 b = matCas.mapa2celda(matCas.matrizCasillas[i][a].x,matCas.matrizCasillas[i][a].y)
                 matCas.checkCasillaDead(b[0],b[1])
 
+    def draw(self):
+        PowerUp.draw(self)
+        if self.laser > 0:
+            pygame.draw.line(self.screen, COLOR_White, [self.x, marDown], [self.x, marUp], 2)
+            self.laser -= 1
 
 
 
