@@ -5,6 +5,7 @@ import pygame
 
 class Casilla():
 
+    #recibe la poscicion, el contador que representa su resistencia y la pantalla
     def __init__(self,x,y,contador,screen):
         self.x = x
         self.y = y
@@ -13,6 +14,7 @@ class Casilla():
         self.screen = screen
         self.id = 1
 
+    #dibuja la casilla
     def draw(self):
         a = COLOR_Red2[0] * self.cont / self.contTotal + COLOR_Yellow[0] * (
             self.contTotal - self.cont) / self.contTotal
@@ -41,13 +43,16 @@ class Casilla():
         self.drawCounter()
         return
 
+    #se destruye
     def kill(self):
         del self
 
+    #dibuja el contador de resistencia que tiene
     def drawCounter(self):
         contText = fuenteCaja.render( str(self.cont), 1, COLOR_White)
         self.screen.blit(contText, (self.x - 18, self.y))
 
+    #revisa si bola colisiono con la casilla
     def colisionBolita(self,bola):
 
         xin = self.getXin()
@@ -66,22 +71,28 @@ class Casilla():
 
         self.cont -= 1
 
+    # devuelve el x mas a la izquierda de su textura
     def getXin(self):
         return self.x - (22.5)
 
+    # devuelve el y mas arriba de su textura
     def getYin(self):
         return self.y - (22.5)
 
+    # devuelve el x mas a la derecha de su textura
     def getXfin(self):
         return self.x + (22.5)
 
+    # devuelve el y mas abajo de su textura
     def getYfin(self):
         return self.y + (22.5)
 
+    #ubica la casilla en la posicion definida por x e y
     def setPos(self, x, y):
         self.x = x
         self.y = y
 
+    #revisa si bola esta dentro de la casilla
     def isInArea(self, bola):
         xCenter = bola.x
         yCenter = bola.y
@@ -98,6 +109,8 @@ class Casilla():
 
 
 
+
+#Variante de Casilla con doble resistencia
 class Casilla2(Casilla):
 
     def __init__(self,x,y,contador,screen):
@@ -134,6 +147,7 @@ class Casilla2(Casilla):
 
 
 
+#variable de casilla qe equivale a un espacio vacio
 class CasillaVacia():
 
     def __init__(self):
@@ -147,6 +161,11 @@ class CasillaVacia():
     def kill(self):
         del self
 
+#variante de casilla con geometria triangular de esta forma
+# |\
+# | \
+# |  \
+# |___\
 class CasillaTriangular1(Casilla):
 
     def __init__(self,x,y,contador,screen):
@@ -213,7 +232,11 @@ class CasillaTriangular1(Casilla):
             return False
 
 
-
+#variante de casilla con geometria triangular de esta forma
+#    /|
+#   / |
+#  /  |
+# /___|
 class CasillaTriangular2(Casilla):
 
     def __init__(self,x,y,contador,screen):
@@ -283,6 +306,13 @@ class CasillaTriangular2(Casilla):
             return False
 
 
+
+#variante de casilla con geometria triangular de esta forma
+# _____
+# |   /
+# |  /
+# | /
+# |/
 class CasillaTriangular3(Casilla):
 
     def __init__(self,x,y,contador,screen):
@@ -351,7 +381,12 @@ class CasillaTriangular3(Casilla):
         else:
             return False
 
-
+#variante de casilla con geometria triangular de esta forma
+# _____
+# \   |
+#  \  |
+#   \ |
+#    \|
 class CasillaTriangular4(Casilla):
 
     def __init__(self,x,y,contador,screen):

@@ -10,6 +10,7 @@ totalColumnas = 7
 
 class MatCas():
 
+    #Recibe la pantalla y al jugador
     def __init__(self,screen,player):
         self.screen = screen
         self.player = player
@@ -18,6 +19,7 @@ class MatCas():
         for i in range(8):
             self.matrizCasillas += [[CasillaVacia(),CasillaVacia(),CasillaVacia(),CasillaVacia(),CasillaVacia(),CasillaVacia(),CasillaVacia()]]
 
+    #elige la siguente casilla a poner al azar con las probabilidades especificada en la tarea
     def casillaRandom(self,fila,columna):
         pos = self.celda2mapa(fila,columna)
         cas = CasillaVacia()
@@ -34,12 +36,14 @@ class MatCas():
             cas = aux[randint(0,len(aux)-1)]
         return cas
 
+    #Revisa si el jugador perdio
     def testDead(self):
         for i in range(7):
             if self.matrizCasillas[7][i].id == 1:
                 return True
         return False
 
+    # chequea si una casilla tiene resistencia menor o igual a 0
     def checkCasillaDead(self,fila,columna):
         cas = self.matrizCasillas[fila][columna]
         if cas.id == 1:
@@ -50,7 +54,7 @@ class MatCas():
             cas.kill()
             self.matrizCasillas[fila][columna] = CasillaVacia()
 
-
+    # revisa colisiones en todas las casillas de la matriz con la bola especificada
     def testColision(self,bola):
         pos = self.mapa2celda(bola.x,bola.y)
 
@@ -80,6 +84,7 @@ class MatCas():
                 return True
         return False
 
+    #reinicia la matriz
     def restart(self):
         self.matrizCasillas = []
         self.contUniversal = 0
@@ -89,6 +94,7 @@ class MatCas():
                  CasillaVacia()]]
         self.nextLevel()
 
+    #dibuja el contenido de todos los elementos de la matriz
     def draw(self):
         for i in range(8):
             for j in range(7):
@@ -97,6 +103,7 @@ class MatCas():
         contText = fuenteCaja.render("Nivel: " + str(self.contUniversal), 1, COLOR_White)
         self.screen.blit(contText, (5, 40))
 
+    #avanza de nivel
     def nextLevel(self):
 
         for i in range(0,8,1):
@@ -122,8 +129,10 @@ class MatCas():
                 self.matrizCasillas[0][k] = self.casillaRandom(0,k)
 
 
+    #convierte una posicion de la matriz a una ubicacion en la pantalla
     def celda2mapa(self,fila,columna):
         return ((columna)*45.0 + 22.5, marUp + (fila+1)*45.0 + 22.5)
 
+    # convierte una ubicacion en la pantalla a una posicion de la matriz
     def mapa2celda(self,x,y):
         return (int(y - marUp - 45)/45,int(x)/45)
