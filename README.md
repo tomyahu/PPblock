@@ -1,5 +1,7 @@
-Dar run a PPBlock.py
+Este codigo ha sido probado que es compatible con Python 2.7.13 y 3.6
 
+Para iniciar:
+Dar run a PPBlock.py
 
 Controles:
 
