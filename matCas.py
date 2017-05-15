@@ -135,4 +135,4 @@ class MatCas():
 
     # convierte una ubicacion en la pantalla a una posicion de la matriz
     def mapa2celda(self,x,y):
-        return (int(y - marUp - 45)/45,int(x)/45)
+        return (int(int(y - marUp - 45)/45),int(int(x)/45))

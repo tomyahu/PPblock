@@ -1,3 +1,6 @@
+Dar run a PPBlock.py
+
+
 Controles:
 
 -con w lanzas la bolita
